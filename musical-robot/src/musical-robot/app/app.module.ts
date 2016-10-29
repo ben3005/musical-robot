@@ -9,6 +9,7 @@ import { AppComponent }   from './app.component';
 import { NavbarComponent } from './navbar.component';
 import { MapComponent } from './map/map.component';
 import { ListComponent } from './list.component';
+import { SocialFeedComponent } from './SocialFeed/socialFeed.component';
 
 @NgModule({
     imports: [
@@ -19,8 +20,8 @@ import { ListComponent } from './list.component';
 			apiKey: 'AIzaSyDW2Hk3NQWnZii9te8BraCWbFmW3vXsRqo'
 		})
 	],
-    declarations: [AppComponent, NavbarComponent, MapComponent, ListComponent],
-    bootstrap: [AppComponent, NavbarComponent, MapComponent, ListComponent]
+    declarations: [AppComponent, NavbarComponent, MapComponent, ListComponent, SocialFeedComponent],
+    bootstrap: [AppComponent, NavbarComponent, MapComponent, ListComponent, SocialFeedComponent]
 
 })
 export class AppModule { }
