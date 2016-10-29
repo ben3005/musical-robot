@@ -2,6 +2,11 @@
 
 @Component({
     selector: 'my-app',
-    template: '<h1> angular app</h1>'
+    template: '<navbar>Nav</navbar>\
+                <h1> Main Content</h1><br>\
+                <list>List</list><Br>\
+                <map>Map</map><Br> '
 })
-export class AppComponent { } 
+export class AppComponent {
+    name = "Parent Component"
+} 
