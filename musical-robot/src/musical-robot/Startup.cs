@@ -37,7 +37,7 @@ namespace musical_robot
         {
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
-
+			services.AddMemoryCache();
             services.AddMvc();
         }
 
