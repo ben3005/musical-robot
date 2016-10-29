@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System.IO;
 
 namespace musical_robot
 {
@@ -51,6 +52,20 @@ namespace musical_robot
             app.UseApplicationInsightsExceptionTelemetry();
 
             app.UseMvc();
+
+			app.Use(async (context, next) =>
+			{
+				await next();
+
+				if (context.Response.StatusCode == 404
+					&& !Path.HasExtension(context.Request.Path.Value))
+				{
+					context.Request.Path = "/index.html";
+					await next();
+				}
+			});	
+
+			app.UseStaticFiles();
         }
     }
 }
