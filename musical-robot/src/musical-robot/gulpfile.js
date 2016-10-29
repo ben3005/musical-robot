@@ -41,6 +41,12 @@ gulp.task('restore:angular-in-memory-web-api', ['clean:lib'], function () {
 	]).pipe(gulp.dest(libs + 'angular-in-memory-web-api'));
 });
 
+gulp.task('restore:angular2-google-maps', ['clean:lib'], function () {
+	gulp.src([
+        'node_modules/angular2-google-maps/**/*.js'
+	]).pipe(gulp.dest(libs + 'angular2-google-maps'));
+});
+
 gulp.task('restore:angular', ['clean:lib'], function () {
 	gulp.src([
         'node_modules/@angular/**/*.js'
@@ -61,14 +67,15 @@ gulp.task('build:lib-restore', [
     'restore:rxjs',
     'restore:angular-in-memory-web-api',
     'restore:angular',
-    'restore:bootstrap'
+    'restore:bootstrap',
+	'restore:angular2-google-maps'
 ]);
 
 gulp.task('build:ts-compile', ['clean:app'], function () {
     gulp.src('app/**/*.js').pipe(gulp.dest('./wwwroot/app/'));
 });
 
-gulp.task('build', ['build:ts-compile', 'build:lib-restore', 'build:sass'], function () {
+gulp.task('build', ['build:ts-compile', 'build:lib-restore', 'build:sass', 'build:copy-html'], function () {
 
 });
 
@@ -91,4 +98,9 @@ gulp.task('build:sass', [], function () {
 		.pipe(cleanCSS())
 		.pipe(rename({ extname: '.min.css' }))
 		.pipe(gulp.dest('./wwwroot/css'));
+});
+
+gulp.task('build:copy-html', [], function () {
+	gulp.src('app/**/*.html')
+		.pipe(gulp.dest('./wwwroot/app'));
 });
