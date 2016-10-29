@@ -5,13 +5,24 @@ using System.Threading.Tasks;
 
 namespace musical_robot.Models
 {
-    public class MissingPerson
-    {
+	public class MissingPerson
+	{
 		public string UID { get; set; }
 		public string Surname { get; set; }
 		public string Forename { get; set; }
 		public string Gender { get; set; }
-		public string BirthYear { get; set; }
+		public int? BirthYear { get; set; }
+		public int? Age
+		{
+			get
+			{
+				if (BirthYear.HasValue)
+				{
+					return DateTime.Now.Year - BirthYear.Value;
+				}
+				return null;
+			}
+		}
 		public string Status { get; set; }
 		public string StatusPriorToDormant { get; set; }
 		public string Category { get; set; }
