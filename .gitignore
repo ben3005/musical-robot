@@ -254,3 +254,4 @@ paket-files/
 /musical-robot/src/musical-robot/wwwroot/libs
 /musical-robot/src/musical-robot/app/*.js
 /musical-robot/src/musical-robot/app/*.js.map
+/musical-robot/src/musical-robot/wwwroot/css
