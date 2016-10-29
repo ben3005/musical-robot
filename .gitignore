@@ -250,3 +250,7 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+/musical-robot/src/musical-robot/wwwroot/app
+/musical-robot/src/musical-robot/wwwroot/libs
+/musical-robot/src/musical-robot/app/*.js
+/musical-robot/src/musical-robot/app/*.js.map

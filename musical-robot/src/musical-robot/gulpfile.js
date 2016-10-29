@@ -1,4 +1,5 @@
-﻿var gulp = require('gulp');
+﻿/// <binding BeforeBuild='tsCompile' />
+var gulp = require('gulp');
 
 var libs = './wwwroot/libs/';
 
@@ -59,3 +60,6 @@ gulp.task('restore', [
     'restore:angular',
     'restore:bootstrap'
 ]);
+gulp.task('tsCompile', [], function () {
+    gulp.src('app/**/*.js').pipe(gulp.dest('./wwwroot/app/'));
+});
