@@ -65,9 +65,8 @@ namespace musical_robot.Middleware
 					RecordUpdatedOn = csvPerson[15],
 					LastSeenOn = csvPerson[16],
 					StatusChangedOn = csvPerson[17],
-					Latitude = csvPerson[18],
-					Longitude = csvPerson[19]
-
+					Latitude = Convert.ToDouble(csvPerson[18]),
+					Longitude = Convert.ToDouble(csvPerson[19])
 				});
 			}
 			return result;
