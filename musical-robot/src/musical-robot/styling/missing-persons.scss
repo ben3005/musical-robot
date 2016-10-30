@@ -33,6 +33,24 @@
 		line-height: 5rem;
 		font-size: large;
 		padding-left: 1rem;
-		cursor: pointer
+		cursor: pointer;
+	}
+}
+
+.card:nth-child(2n+1) {
+	.picture {
+		background-image: url('../img/ldman.png');
+	}
+}
+
+.card:nth-child(4n-2) {
+	.picture {
+		background-image: url('../img/sally.png');
+	}
+}
+
+.person-info {
+	label, p {
+		font-size: larger;
 	}
 }

@@ -8,7 +8,7 @@ import { MapComponent } from './map/map.component';
 @Component({
 	selector: 'person',
 	template: ` 
-	<div *ngIf="isPersonSet">
+	<div class="person-info" *ngIf="isPersonSet">
 		<h2> {{ person.forename }} {{ person.surname }} </h2>
 		<div class="col-xs-6">
 			<div class="col-xs-12">
@@ -35,9 +35,6 @@ import { MapComponent } from './map/map.component';
 					[title]="marker.entryOn">
 				</sebm-google-map-marker>
 			</sebm-google-map>
-			<p>Output area: {{ person.outputArea }} </p>
-			<p>Latitude: {{ person.latitude }} </p>
-			<p>Longitude: {{ person.longitude }} </p>
 			<p>Recorded on: {{ person.recordCreatedOn }} </p>
 			<p>Last updated on: {{ person.recordUpdatedOn }} </p>
 			<p>Last seen on: {{ person.lastSeenOn }} </p>
@@ -71,7 +68,12 @@ export class PersonComponent implements OnInit {
 		this.route.params.forEach((params: Params) => {
 			let uid = params['uid'];
 			this.missingPersonsService.getMissingPerson(uid).subscribe(
-				person => { this.person = person; this.isPersonSet = true; },
+				person => {
+					this.person = person;
+					this.isPersonSet = true;
+					this.lat = this.person.latitude;
+					this.lng = this.person.longitude;
+				},
 				error => this.errorMessage = <any>error);
 		});
 	}

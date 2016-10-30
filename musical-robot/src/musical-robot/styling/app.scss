@@ -6,10 +6,11 @@
 @import "layout";
 
 .sebm-google-map-container {
-    height: 700px;
+	height: 700px;
 }
 
-
-map {
-    width: 75%;
+.person-info {
+	.sebm-google-map-container {
+		height: 300px;
+	}
 }
