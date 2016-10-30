@@ -28,7 +28,7 @@ export class MissingPersonListComponent implements OnInit {
 	getMissingPersons() {
 		this.missingPersonsService.getMissingPersons()
 			.subscribe(
-			missingPersons => { this.missingPersons = missingPersons; console.log(missingPersons); },
+			missingPersons => this.missingPersons = missingPersons,
 			error => this.errorMessage = <any>error);
 	}
 }
