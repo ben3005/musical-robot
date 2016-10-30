@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { MissingPersonsService } from './missingpersons.service';
 import { MissingPerson } from './missingperson';
 import { MapComponent } from './map/map.component';
+import { FacebookService, FacebookLoginResponse, FacebookInitParams } from 'ng2-facebook-sdk/dist';
 
 @Component({
 	selector: 'person',
@@ -42,9 +43,17 @@ import { MapComponent } from './map/map.component';
 			<p>Accomodation type: {{ person.accomodationType }} </p>
 			<p>Status prior to dormant: {{ person.statusPriorToDormant }} </p>
 		</div>
+		<div class="col-xs-12">
+			<h2>Latest sighting information</h2>
+			<div class="fb-list">
+				<div *ngFor="let post of wallFeed">
+					<p>{{post.message}}</p>
+				</div>
+			</div>
+		</div>
 	</div>
 	`,
-	providers: [MissingPersonsService]
+	providers: [MissingPersonsService, FacebookService]
 })
 export class PersonComponent implements OnInit {
 	uid: string;
@@ -57,12 +66,21 @@ export class PersonComponent implements OnInit {
 	// initial center position for the map
 	lat: number = 53.472225;
 	lng: number = -2.2936244;
+	public wallFeed: Array<any> = [];
 
 	constructor(
 		private route: ActivatedRoute,
 		private router: Router,
-		private missingPersonsService: MissingPersonsService)
-	{ this.isPersonSet = false; }
+		private fb: FacebookService,
+		private missingPersonsService: MissingPersonsService) {
+		this.isPersonSet = false;
+		let fbParams: FacebookInitParams = {
+			appId: '262201460849386',
+			xfbml: true,
+			version: 'v2.8'
+		};
+		this.fb.init(fbParams);
+	}
 
 	ngOnInit() {
 		this.route.params.forEach((params: Params) => {
@@ -73,6 +91,16 @@ export class PersonComponent implements OnInit {
 					this.isPersonSet = true;
 					this.lat = this.person.latitude;
 					this.lng = this.person.longitude;
+					this.fb.api('musicalrobot/feed', "get").then(
+						(response: any) => {
+							for (var i = 0; i < response.data.length; i++) {
+								if (response.data[i].message && response.data[i].message.includes('#seen' + this.person.forename + this.person.surname)) {
+									this.wallFeed.push(response.data[i]);
+								}
+							}
+						},
+						(error: any) => console.error(error)
+					);
 				},
 				error => this.errorMessage = <any>error);
 		});

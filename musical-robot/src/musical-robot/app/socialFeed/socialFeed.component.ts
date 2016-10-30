@@ -7,7 +7,7 @@ import { FacebookService, FacebookLoginResponse, FacebookInitParams } from 'ng2-
 					<h2>The latest from our facebook page</h2>
 					<div *ngFor="let post of wallFeed">
 						<p>{{post.message}}</p>
-					</div>S
+					</div>
 				</div>`,
 	providers: [FacebookService]
 })

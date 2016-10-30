@@ -4,7 +4,7 @@ export class MissingPerson {
 	constructor(
 		public uid: string,
 		public surname: string,
-		public forname: string,
+		public forename: string,
 		public birthYear: number,
 		public age: number,
 		public status: string,

@@ -54,3 +54,14 @@
 		font-size: larger;
 	}
 }
+
+.fb-list {
+	background-color: $light-background;
+	border-radius: 2px;
+	border: 1px solid $dark-transparent;
+	margin-bottom: 30px;
+
+	div {
+		margin: 5px;
+	}
+}
