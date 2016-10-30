@@ -47,6 +47,18 @@ gulp.task('restore:angular2-google-maps', ['clean:lib'], function () {
 	]).pipe(gulp.dest(libs + 'angular2-google-maps'));
 });
 
+gulp.task('restore:ng2-charts', ['clean:lib'], function () {
+	gulp.src([
+		'node_modules/ng2-charts/**/*.js'
+	]).pipe(gulp.dest(libs + 'ng2-charts'));
+});
+
+gulp.task('restore:charts-js', ['clean:lib'], function () {
+	gulp.src([
+        'node_modules/chart.js/dist/chart.js'
+	]).pipe(gulp.dest(libs + 'chart.js'));
+});
+
 gulp.task('restore:angular', ['clean:lib'], function () {
 	gulp.src([
         'node_modules/@angular/**/*.js'
@@ -68,7 +80,9 @@ gulp.task('build:lib-restore', [
     'restore:angular-in-memory-web-api',
     'restore:angular',
     'restore:bootstrap',
-	'restore:angular2-google-maps'
+	'restore:angular2-google-maps',
+	'restore:ng2-charts',
+	'restore:charts-js'
 ]);
 
 gulp.task('build:ts-compile', ['clean:app'], function () {
