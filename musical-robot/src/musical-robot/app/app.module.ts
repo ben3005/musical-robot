@@ -14,6 +14,7 @@ import { GraphsComponent } from './graphs/graphs.component';
 import { MapComponent } from './map/map.component';
 import { MissingPersonListComponent } from './list.component';
 import { HttpModule, JsonpModule } from '@angular/http';
+import { PersonComponent } from './person.component';
 
 @NgModule({
     imports: [
@@ -28,14 +29,14 @@ import { HttpModule, JsonpModule } from '@angular/http';
 		ChartsModule,
 		RouterModule.forRoot([
 			{ path: 'people', component: MissingPersonListComponent },
-			{ path: 'person/:uid', component: MissingPersonListComponent },
+			{ path: 'person/:uid', component: PersonComponent },
 			{ path: 'map', component: MapComponent },
 			{ path: 'graphs', component: GraphsComponent },
 			{ path: '', component: MissingPersonListComponent },
 			{ path: '**', component: MissingPersonListComponent }
 		])
 	],
-	declarations: [AppComponent, NavbarComponent, MapComponent, MissingPersonListComponent, GraphsComponent, SocialFeedComponent],
+	declarations: [AppComponent, NavbarComponent, MapComponent, MissingPersonListComponent, SocialFeedComponent, PersonComponent, GraphsComponent],
 	bootstrap: [AppComponent, NavbarComponent, SocialFeedComponent]
 
 })
