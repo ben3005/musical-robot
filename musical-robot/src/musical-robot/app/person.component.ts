@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { MissingPersonsService } from './missingpersons.service';
 import { MissingPerson } from './missingperson';
+import { MapComponent } from './map/map.component';
 
 @Component({
 	selector: 'person',
