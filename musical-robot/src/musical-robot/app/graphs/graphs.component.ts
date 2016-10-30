@@ -9,20 +9,40 @@ import { MissingPerson } from '../missingperson';
 		<div *ngIf="!hasSetGraphData">
 			<div class="loader loader-dark"></div>
 		</div>
-			<div *ngIf="hasSetGraphData">
-				<div>
-				<canvas baseChart
-				[datasets] = "radarChartData"
-				[labels] = "radarChartLabels"
-				[chartType] = "radarChartType"></canvas></div>
+			<div class="col-xs-offset-1" *ngIf="hasSetGraphData">
+				<div class="col-xs-10">
+					<h3>Ages</h3>
+					<canvas baseChart
+						[datasets] = "radarChartData"
+						[labels] = "radarChartLabels"
+						[chartType] = "radarChartType"></canvas>
+				</div>
 
-				<div>
-				  <canvas baseChart
-						  [data]="pieChartData"
-						  [labels]="pieChartLabels"
-						  [chartType]="pieChartType" ></canvas>
+				<div class="col-xs-10">
+					<h3>Boroughs</h3>
+					<canvas baseChart
+						[data]="pieChartData"
+						[labels]="pieChartLabels"
+						[chartType]="pieChartType" ></canvas>
 				</div>
+				
+				<div class="col-xs-10">
+					<h3>Categories</h3>
+					<canvas baseChart
+					  [data]="doughnutChartData"
+					  [labels]="doughnutChartLabels"
+					  [chartType]="doughnutChartType"></canvas>
 				</div>
+
+				<div class="col-xs-10">
+					<h3>Status</h3>
+					<canvas baseChart
+						[data]="polarAreaChartData"
+						[labels]="polarAreaChartLabels"
+						[legend]="polarAreaLegend"
+						[chartType]="polarAreaChartType"></canvas>
+				</div>
+			</div>
 `,
 	providers: [MissingPersonsService]
 })
@@ -49,6 +69,18 @@ export class GraphsComponent implements OnInit {
 	public pieChartType: string = 'pie';
 	public hasSetGraphData: boolean = false;
 
+	// PolarArea
+	public polarAreaChartLabels: string[] = [];
+	public polarAreaChartData: number[] = [];
+	public polarAreaLegend: boolean = true;
+
+	public polarAreaChartType: string = 'polarArea';
+
+
+	// Doughnut
+	  public doughnutChartLabels: string[] = [];
+	  public doughnutChartData: number[] = [];
+	  public doughnutChartType: string = 'doughnut';
 
 	constructor(private missingPersonsService: MissingPersonsService) {
 
@@ -83,6 +115,8 @@ export class GraphsComponent implements OnInit {
 			}
 
 			this.calculateBoroughPie(currentPerson);
+			this.calculateStatus(currentPerson);
+			this.calculateCategories(currentPerson);
 		}
 
 		this.radarChartData = [
@@ -106,6 +140,38 @@ export class GraphsComponent implements OnInit {
 		if (!hasFound) {
 			this.pieChartLabels.push(currentPerson.borough);
 			this.pieChartData.push(0);
+		}
+	}
+
+	calculateStatus(currentPerson) {
+		let hasFound: boolean = false;
+		for (var i = 0; i < this.polarAreaChartLabels.length; i++) {
+			if (this.polarAreaChartLabels[i].toString().toLowerCase() === currentPerson.status.toString().toLowerCase()) {
+				hasFound = true;
+				this.polarAreaChartData[i]++;
+				break;
+			}
+		}
+
+		if (!hasFound) {
+			this.polarAreaChartLabels.push(currentPerson.status.toString());
+			this.polarAreaChartData.push(0);
+		}
+	}
+
+	calculateCategories(currentPerson) {
+		let hasFound: boolean = false;
+		for (var i = 0; i < this.doughnutChartLabels.length; i++) {
+			if (this.doughnutChartLabels[i].toString().toLowerCase() === currentPerson.category.toString().toLowerCase()) {
+				hasFound = true;
+				this.doughnutChartData[i]++;
+				break;
+			}
+		}
+
+		if (!hasFound) {
+			this.doughnutChartLabels.push(currentPerson.category.toString());
+			this.doughnutChartData.push(0);
 		}
 	}
 

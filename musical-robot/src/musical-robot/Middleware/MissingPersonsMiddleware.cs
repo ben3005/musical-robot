@@ -13,7 +13,7 @@ namespace musical_robot.Middleware
 	{
 
 		private const string personsCacheKey = "MissingPersonsDataCache";
-		private const int PERSON_LIMIT = 100;
+		private const int PERSON_LIMIT = 500;
 		private readonly RequestDelegate _next;
 		private readonly IMemoryCache _memCache;
 
