@@ -3,11 +3,12 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { MissingPersonsService } from './missingpersons.service';
 import { MissingPerson } from './missingperson';
+import { MapComponent } from './map/map.component';
 
 @Component({
 	selector: 'person',
 	template: ` 
-	<div class="col-md-6" *ngIf="isPersonSet">
+	<div class="col-md-5" *ngIf="isPersonSet">
 		<h2> {{ person.forename }} {{ person.surname }} </h2>
 		<div>
 			<p>Age: {{ person.age }} </p>
