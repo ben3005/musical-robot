@@ -3,11 +3,11 @@
 @Component({
     selector: 'my-app',
     template: `<navbar>Nav</navbar>
-                <h1>Main Content</h1><br />
-                <list></list><br />
-                <map></map><br />
-				<social-feed></social-feed>
-	`
+                <div class="col-xs-9"><list></list>
+                <map></map></div>
+                <div class="col-xs-3">
+				<social-feed></social-feed></div>
+`
 })
 export class AppComponent {
     name = "Parent Component"
