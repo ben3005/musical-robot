@@ -42,6 +42,7 @@ namespace musical_robot
 			services.AddMemoryCache();
 			services.AddMvc();
 			services.AddTransient<IMissingPersonsService, MissingPersonsService>();
+			services.AddTransient<ITwitterService, TwitterService>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline

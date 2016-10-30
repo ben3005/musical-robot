@@ -8,22 +8,25 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 import { AppComponent }   from './app.component';
 import { NavbarComponent } from './navbar.component';
-import { MapComponent } from './map/map.component';
-import { ListComponent } from './list.component';
 import { SocialFeedComponent } from './SocialFeed/socialFeed.component';
+import { MapComponent } from './map/map.component';
+import { MissingPersonListComponent } from './list.component';
+import { HttpModule, JsonpModule } from '@angular/http';
 
 @NgModule({
     imports: [
 		BrowserModule,
 		CommonModule,
 		FormsModule,
+		HttpModule,
+		JsonpModule,
 		AgmCoreModule.forRoot({
 			apiKey: 'AIzaSyDW2Hk3NQWnZii9te8BraCWbFmW3vXsRqo'
 		}),
 		ChartsModule
 	],
-    declarations: [AppComponent, NavbarComponent, MapComponent, ListComponent, SocialFeedComponent],
-    bootstrap: [AppComponent, NavbarComponent, MapComponent, ListComponent, SocialFeedComponent]
+	declarations: [AppComponent, NavbarComponent, MapComponent, MissingPersonListComponent, SocialFeedComponent],
+	bootstrap: [AppComponent, NavbarComponent, MapComponent, MissingPersonListComponent, SocialFeedComponent]
 
 })
 export class AppModule { }
