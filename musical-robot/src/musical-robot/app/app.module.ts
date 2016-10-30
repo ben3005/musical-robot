@@ -27,6 +27,7 @@ import { HttpModule, JsonpModule } from '@angular/http';
 		ChartsModule,
 		RouterModule.forRoot([
 			{ path: 'people', component: MissingPersonListComponent },
+			{ path: 'person/:uid', component: MissingPersonListComponent },
 			{ path: 'map', component: MapComponent },
 			{ path: '', component: MissingPersonListComponent },
 			{ path: '**', component: MissingPersonListComponent }
