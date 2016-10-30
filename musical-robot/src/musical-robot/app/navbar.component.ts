@@ -14,13 +14,14 @@
     <a class="navbar-brand" href="#">and jefferson runs</a>
     </div>
         <div class="collapse navbar-collapse" id= "bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-            <li routerLink="/people" routerLinkActive="active"><a href="#">Missing Persons</a></li>
-                <li routerLink="/map" routerLinkActive="active"><a href="#">Map</a></li>
-                    </ul>
-                    </div>
-                    </div>
-                    </nav>`
+			<ul class="nav navbar-nav">
+				<li routerLink="/people" routerLinkActive="active"><a href="#">Missing Persons</a></li>
+				<li routerLink="/map" routerLinkActive="active"><a href="#">Map</a></li>
+				<li routerLink="/graphs" routerLinkActive="active"><a href="#">Graphs</a></li>
+			</ul>
+		</div>
+    </div>
+    </nav>`
 })
 export class NavbarComponent {
     name = "Navbar"

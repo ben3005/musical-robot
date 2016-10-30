@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent }   from './app.component';
 import { NavbarComponent } from './navbar.component';
 import { SocialFeedComponent } from './SocialFeed/socialFeed.component';
+import { GraphsComponent } from './graphs/graphs.component';
 import { MapComponent } from './map/map.component';
 import { MissingPersonListComponent } from './list.component';
 import { HttpModule, JsonpModule } from '@angular/http';
@@ -29,11 +30,12 @@ import { HttpModule, JsonpModule } from '@angular/http';
 			{ path: 'people', component: MissingPersonListComponent },
 			{ path: 'person/:uid', component: MissingPersonListComponent },
 			{ path: 'map', component: MapComponent },
+			{ path: 'graphs', component: GraphsComponent },
 			{ path: '', component: MissingPersonListComponent },
 			{ path: '**', component: MissingPersonListComponent }
 		])
 	],
-	declarations: [AppComponent, NavbarComponent, MapComponent, MissingPersonListComponent, SocialFeedComponent],
+	declarations: [AppComponent, NavbarComponent, MapComponent, MissingPersonListComponent, GraphsComponent, SocialFeedComponent],
 	bootstrap: [AppComponent, NavbarComponent, SocialFeedComponent]
 
 })

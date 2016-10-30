@@ -7,8 +7,11 @@ import { MissingPerson } from './missingperson';
 	selector: 'list',
 	template: `
 	<h3>Missing Persons</h3>
-	<div class="card" *ngFor="let person of missingPersons"> 
-		<p>{{ person.forename }} {{ person.surname }}</p>
+	<div class="card-list">
+		<div class="card" *ngFor="let person of missingPersons">
+			<div class="picture"></div>
+			<p class="caption">{{ person.forename }} {{ person.surname }}</p>
+		</div>
 	</div>
 	`,
 	providers: [MissingPersonsService]
