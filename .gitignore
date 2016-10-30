@@ -256,3 +256,4 @@ paket-files/
 /musical-robot/src/musical-robot/app/**/*.js.map
 /musical-robot/src/musical-robot/wwwroot/css
 /musical-robot/src/musical-robot/app/map/map.component.js
+
