@@ -7,35 +7,42 @@ import { MissingPerson } from './missingperson';
 @Component({
 	selector: 'person',
 	template: ` 
-	<div class="col-md-6" *ngIf="isPersonSet">
+	<div *ngIf="isPersonSet">
 		<h2> {{ person.forename }} {{ person.surname }} </h2>
-		<div>
-			<p>Age: {{ person.age }} </p>
-			<p>Status: {{ person.status }} </p>
-			<p>Status prior to dormant: {{ person.statusPriorToDormant }} </p>
-			<p>Category: {{ person.category }} </p>
-			<p>Accomodation type: {{ person.accomodationType }} </p>
-			<p>Borough: {{ person.borough }} </p>
-			<p>Missing on: {{ person.missingOn }} </p>
+		<div class="col-xs-6">
+			<div class="col-xs-12">
+				<img src="./img/person.png" />
+			</div>
+			<div class="col-xs-12">
+				<div class="col-xs-6">
+				<label>Age: </label><p>{{ (person.age) ? person.age : 'Unknown' }}</p>
+				<label>Status: </label><p>{{ person.status }} </p>
+				<label>Category: </label><p>{{ person.category }} </p>
+				</div>
+				<div class="col-xs-6">
+				<label>Missing on: </label><p>{{ person.missingOn }}</p>
+				<label>Borough: </label><p>{{ person.borough }} </p>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-6">
+			<h4>Location History</h4>
+			<sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+				<sebm-google-map-marker *ngFor="let marker of person.history; let i = index" 
+					[latitude]="marker.location.latitude" 
+					[longitude]="marker.location.longitude"
+					[title]="marker.entryOn">
+				</sebm-google-map-marker>
+			</sebm-google-map>
+			<p>Output area: {{ person.outputArea }} </p>
+			<p>Latitude: {{ person.latitude }} </p>
+			<p>Longitude: {{ person.longitude }} </p>
 			<p>Recorded on: {{ person.recordCreatedOn }} </p>
 			<p>Last updated on: {{ person.recordUpdatedOn }} </p>
 			<p>Last seen on: {{ person.lastSeenOn }} </p>
 			<p>Status changed on: {{ person.statusChangedOn }} </p>
-			<div class="pull-right">
-				<i>Location History</i>
-				<p>Output area: {{ person.outputArea }} </p>
-				<p>Latitude: {{ person.latitude }} </p>
-				<p>Longitude: {{ person.longitude }} </p>
-				<p>OutputAreaCenX: {{ person.outputAreaCenX }} </p>
-				<p>OutputAreaCenY: {{ person.outputAreaCenY }} </p>
-				<div>Prior location points: 
-					<div *ngFor="let point of person.history"> 
-						<p>Message: {{point.message}} </p>
-						<p>Entry on: {{point.entryOn}} </p>
-						<p>Coordinates: ({{ point.location.latitude }}, {{point.location.longitude}}) </p>
-					</div>
-				</div>
-			</div>
+			<p>Accomodation type: {{ person.accomodationType }} </p>
+			<p>Status prior to dormant: {{ person.statusPriorToDormant }} </p>
 		</div>
 	</div>
 	`,
@@ -47,6 +54,11 @@ export class PersonComponent implements OnInit {
 	person: MissingPerson;
 	isPersonSet: boolean;
 	mode = 'Observable';
+	// google maps zoom level
+	zoom: number = 10;
+	// initial center position for the map
+	lat: number = 53.472225;
+	lng: number = -2.2936244;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -58,7 +70,7 @@ export class PersonComponent implements OnInit {
 		this.route.params.forEach((params: Params) => {
 			let uid = params['uid'];
 			this.missingPersonsService.getMissingPerson(uid).subscribe(
-				person => { this.person = person; this.isPersonSet = true; console.log(person); },
+				person => { this.person = person; this.isPersonSet = true; },
 				error => this.errorMessage = <any>error);
 		});
 	}

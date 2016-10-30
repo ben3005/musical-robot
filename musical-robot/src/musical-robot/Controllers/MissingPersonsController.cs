@@ -50,8 +50,8 @@ namespace musical_robot.Controllers
 					EntryOn = RandomDay(rand),
 					Location = new Coords()
 					{
-						Latitude = latitude + (rand.NextDouble() / 100.0),
-						Longitude = longitude - (rand.NextDouble() / 100.0)
+						Latitude = latitude + (rand.NextDouble() / 10.0),
+						Longitude = longitude - (rand.NextDouble() / 10.0)
 					}
 				});
 			}
