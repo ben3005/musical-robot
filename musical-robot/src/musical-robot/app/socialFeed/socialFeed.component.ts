@@ -8,8 +8,12 @@ import { FacebookService, FacebookLoginResponse, FacebookInitParams } from 'ng2-
 					<div *ngFor="let post of wallFeed">
 						<p>{{post.message}}</p>
 					</div>
+				</div>
+				<div>
+					<a class="twitter-timeline"  href="https://twitter.com/hashtag/MissingPerson" data-widget-id="792689367634542592">#MissingPerson Tweets</a>            
 				</div>`,
 	providers: [FacebookService]
+
 })
 
 export class SocialFeedComponent implements OnInit {
