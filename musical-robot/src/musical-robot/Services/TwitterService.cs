@@ -11,7 +11,7 @@ namespace musical_robot.Services
 {
 	public interface ITwitterService
 	{
-		Task<string> GetAccessToken();
+		Task<string> UpdateBearerToken();
 		Task<IEnumerable<Tweet>> GetTweetsByHashtags(params string[] hashtags);
 	}
 	public class TwitterService : ITwitterService
@@ -22,7 +22,7 @@ namespace musical_robot.Services
 		public string Token { get; set; }
 		public string Query { get; set; }
 
-		public async Task<string> GetAccessToken()
+		public async Task<string> UpdateBearerToken()
 		{
 			var httpClient = new HttpClient();
 			var customerInfo = Convert.ToBase64String(new UTF8Encoding().GetBytes($"{Key}:{Secret}"));
@@ -35,14 +35,14 @@ namespace musical_robot.Services
 			var json = await response.Content.ReadAsStringAsync();
 
 			dynamic item = JsonConvert.DeserializeObject<object>(json);
-			Token = item["acess-token"];
+			Token = item["access-token"];
 			return Token;
 		}
 
 		public async Task<IEnumerable<Tweet>> GetTweetsByHashtags(params string[] hashtags)
 		{
 			if (string.IsNullOrWhiteSpace(Token))
-				Token = await GetAccessToken();
+				Token = await UpdateBearerToken();
 
 			Query = GetHashTagsQueryParams(hashtags);
 
