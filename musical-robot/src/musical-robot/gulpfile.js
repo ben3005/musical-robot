@@ -47,6 +47,12 @@ gulp.task('restore:angular2-google-maps', ['clean:lib'], function () {
 	]).pipe(gulp.dest(libs + 'angular2-google-maps'));
 });
 
+gulp.task('restore:ng2-facebook-sdk', ['clean:lib'], function () {
+	gulp.src([
+		'node_modules/ng2-facebook-sdk/**/*.js'
+	]).pipe(gulp.dest(libs + 'ng2-facebook-sdk'));
+});
+
 gulp.task('restore:ng2-charts', ['clean:lib'], function () {
 	gulp.src([
 		'node_modules/ng2-charts/**/*.js'
@@ -82,7 +88,8 @@ gulp.task('build:lib-restore', [
 	'restore:bootstrap',
 	'restore:angular2-google-maps',
 	'restore:ng2-charts',
-	'restore:charts-js'
+	'restore:charts-js',
+	'restore:ng2-facebook-sdk'
 ]);
 
 gulp.task('build:ts-compile', ['clean:app'], function () {
