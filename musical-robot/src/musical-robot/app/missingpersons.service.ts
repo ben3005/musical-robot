@@ -8,12 +8,19 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class MissingPersonsService {
-	private missinPersonsUrl = 'api/missingpersons';
+	private missingPersonsUrl = 'api/missingpersons';
+	private singleMissingPersonUrl = 'api/missingpersons/';
 
 	constructor(private http: Http) { }
 
 	getMissingPersons(): Observable<MissingPerson[]> {
-		return this.http.get(this.missinPersonsUrl)
+		return this.http.get(this.missingPersonsUrl)
+			.map(this.extractData)
+			.catch(this.handleError);
+	}
+
+	getMissingPerson(uid: string): Observable<MissingPerson> {
+		return this.http.get(this.singleMissingPersonUrl + uid)
 			.map(this.extractData)
 			.catch(this.handleError);
 	}
