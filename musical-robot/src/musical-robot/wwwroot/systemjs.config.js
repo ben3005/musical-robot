@@ -24,7 +24,8 @@
             // other libraries
             'rxjs': 'npm:rxjs',
             'angular-in-memory-web-api': 'npm:angular-in-memory-web-api',
-            'angular2-google-maps/core': 'npm:angular2-google-maps/core/core.umd.js'
+            'angular2-google-maps/core': 'npm:angular2-google-maps/core/core.umd.js',
+            'ng2-charts': 'npm:ng2-charts'
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
@@ -38,6 +39,10 @@
             'angular-in-memory-web-api': {
                 main: './index.js',
                 defaultExtension: 'js'
+            },
+            'ng2-charts': {
+            	main: 'ng2-charts.js',
+            	defaultExtension: 'js'
             }
         }
     });
